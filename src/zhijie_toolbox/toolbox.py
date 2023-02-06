@@ -1,4 +1,8 @@
 import os
+import shutil
+from time import gmtime, strftime
+
+
 
 def create_package_template(current_path, project_name, version="0.0.1", license_type="MIT"):
     # create src folder
@@ -68,3 +72,41 @@ SOFTWARE.
         
     with open(os.path.join(current_path, "README.md"), mode='w'): pass
     os.makedirs(os.path.join(current_path, "tests"), exist_ok=True)
+    
+    
+def version_control(current_path, runs_name, not_save_list=[".git", "runs"], log=""):
+    """This is a simple version control function that copy current codes and save it into a specified folder
+
+    Args:
+        current_path (str): The top level code directory
+        runs_name (str): Version control runs name
+        not_save_list (list, str): Define the not copy files name, Defaults to ["runs"].
+        log (str, optional): Add this version log, Defaults to "".
+    """
+    # create runs folder
+    runs_path = os.path.join(current_path, "runs")
+    os.makedirs(runs_path, exist_ok=True)
+    # create current runs folder with the name of runs_name
+    runs_name_path = os.path.join(runs_path, runs_name)
+    os.makedirs(runs_name_path)
+    # get all the list file in current path
+    dirs = os.listdir(current_path)
+    print("Runs name path", runs_name_path)
+    
+    if "runs" not in not_save_list:
+        not_save_list.append("runs")
+
+    log = strftime("%Y-%m-%d %H:%M:%S", gmtime()) +"\n"+ log
+    with open(os.path.join(runs_name_path, "log.txt"), mode='w') as f: 
+        f.write(log)
+        
+    for file in dirs:
+        if file not in not_save_list:       
+            source = os.path.join(current_path, file)
+            destination =  os.path.join(runs_name_path, file)
+            
+            if os.path.isfile(source):
+                # copy these file to runs_path
+                shutil.copy(os.path.join(current_path, file), os.path.join(runs_name_path, file))
+            else:
+                shutil.copytree(source, destination)

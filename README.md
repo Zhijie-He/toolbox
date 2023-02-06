@@ -11,3 +11,12 @@ Usage:
 from zhijie_toolbox import toolbox
 toolbox.create_package_template(current_path, project_name)
 ```
+
+- version_control(current_path, runs_name, not_save_list=[".git", "runs"], log="")
+This will help you to copy current codes to a runs folder where we can record our codes locally
+We can define not save list by ourself by specify files name
+Usage:
+```
+from zhijie_toolbox import toolbox
+toolbox.version_control(current_path, runs_name)
+```
