@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project] 
 name = "zhijie_toolbox" 
-version = "0.0.1" 
+version = "0.0.3" 
 authors = [ 
 { name="Zhijie He", email="zhijiehe97@gmail.com" }, 
 ]
@@ -18,5 +18,5 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/pypa/sampleproject"
-"Bug Tracker" = "https://github.com/pypa/sampleproject/issues" 
+"Homepage" = "https://github.com/Zhijie-He/toolbox"
+"Bug Tracker" = "https://github.com/Zhijie-He/toolbox/issues" 
