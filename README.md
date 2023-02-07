@@ -24,3 +24,14 @@ Usage:
 from zhijie_toolbox import toolbox
 toolbox.version_control(current_path, runs_name)
 ```
+
+- create_project_template(current_path, add_folder=None)
+
+This function will help you create a project template. 
+Basic folders are ["configs", "datasets", "experiments", "scripts", "tests", "packages"]
+
+Usage:
+```
+from zhijie_toolbox import toolbox
+toolbox.create_project_template(current_path)
+```

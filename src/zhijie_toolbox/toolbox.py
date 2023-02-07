@@ -2,8 +2,6 @@ import os
 import shutil
 from time import gmtime, strftime
 
-
-
 def create_package_template(current_path, project_name, version="0.0.1", license_type="MIT"):
     # create src folder
     src_path = os.path.join(current_path, "src")
@@ -37,8 +35,7 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-                """
+SOFTWARE."""
     else:
         license=""
     # create other necessary files and folder
@@ -110,3 +107,32 @@ def version_control(current_path, runs_name, not_save_list=[".git", "runs"], log
                 shutil.copy(os.path.join(current_path, file), os.path.join(runs_name_path, file))
             else:
                 shutil.copytree(source, destination)
+                
+
+def create_project_template(current_path, add_folder=None):
+    """Define a project template: in the top level directory: 
+    configs: store package template
+    datasets: store neceesary datasets
+    experiments: store experiment result and also checkpoint
+    scripts: runnning files
+    test: testing files folder
+    packages: store the main model and algorithm
+
+    Args:
+        current_path (str): path to create project template
+        add_folder (str): if needs to add other folders
+    """
+    # create necessary 
+    folders = ["configs", "datasets", "experiments", "scripts", "tests", "packages"]
+    if add_folder is not None:
+        folders += add_folder
+    
+    
+    ReadMe = "README.md"
+    for folder in folders:
+        folder_path = os.path.abspath(os.path.join(current_path, folder))
+        os.makedirs(folder_path, exist_ok=True)
+        ReadMe_path = os.path.abspath(os.path.join(folder_path, ReadMe))
+        with open(ReadMe_path, mode='a'): pass
+    
+    
